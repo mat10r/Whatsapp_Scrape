@@ -11,6 +11,7 @@ sight_words = ['a','i','to', 'and', 'the', 'is', 'it', 'in', 'you', 'ya',
                            'that','for', 'was', 'like', 'of', 'on', 'he', 'be', 'but',
                            'if', 'so', 'have']
 senders_lower = []
+excluded_words = []
 
 #Remove Unicode
 with open(chat_file, "r") as f:
@@ -120,25 +121,27 @@ def sent_by(phrase, sender = sender, list = lower_clean_lines):
           .format(phrase, count, sender, start_date))
 
 #Top 10 Words
-def get_top_ten(list = lower_clean_lines):
+clean_lines = [line.split(":")[1] for line in clean_lines if ":" in line]
+def get_top_ten(list = clean_lines):
     word_count = {}
+    
     for word in list:
         if word in excluded_words:
-            pass
+            list.remove(word)
         else:
             word_count[word] = word_count.get(word, 0) + 1
     
     sorted_words = sorted(word_count.items(), key=lambda x: x[1], reverse = True)
 
     for word, count in sorted_words[:10]:
-        print(f"'{word}' has been sent '{count}' times since {start_date}.")
+        print(f"{word} has been sent '{count}' times since {start_date}.")
 
 def print_top_ten():
     print("The following are the top 10 uncommon words:")
     get_top_ten()
 
 #Creating Excluded words list for top 10
-excluded_words = []
+
 for word in sight_words:
     excluded_words.append(word)
 
