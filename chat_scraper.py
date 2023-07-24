@@ -1,6 +1,6 @@
 import re
 
-chat_file = 'Brando_chat.txt'
+chat_file = 'Russ_chat.txt'
 
 clean_lines = []
 lower_clean_lines = []
