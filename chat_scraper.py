@@ -1,6 +1,6 @@
 import re
 
-chat_file = 'Russ_chat.txt'
+chat_file = 'file_name.txt'
 
 clean_lines = []
 lower_clean_lines = []
@@ -19,7 +19,6 @@ with open(chat_file, "r") as f:
 
     # Remove all unicode characters from the text.
     clean_content = re.sub(r"[^\x00-\x7F]", "", content)
-
     with open(chat_file, "w") as f:
         f.write(clean_content)
 
@@ -141,7 +140,6 @@ def print_top_ten():
     get_top_ten()
 
 #Creating Excluded words list for top 10
-
 for word in sight_words:
     excluded_words.append(word)
 
@@ -170,7 +168,7 @@ def all_senders(phrase):
 each_sent()
 all_senders('haha')
 phrase_count('lol')
-print_top_ten()
+#print_top_ten()
 
 
 
